@@ -1,0 +1,13 @@
+.cache/
+.chroma/
+.env
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+Documents/
+test_api.py
+claimform.html
+underwriterreview.html
