@@ -26,15 +26,17 @@ def _extract_summary(analysis_text: str) -> list[str]:
         if in_summary:
             if clean in ("FLAGGED INDICATORS", "RECOMMENDATIONS"):
                 break
-            if not line.strip():
+            stripped = line.strip()
+            is_separator = bool(stripped) and set(stripped) <= {"-"}
+            if not stripped or is_separator:
                 if current:
                     paragraphs.append(" ".join(current).strip())
                     current = []
             else:
-                current.append(line.strip())
+                current.append(stripped)
     if current:
         paragraphs.append(" ".join(current).strip())
-    return paragraphs
+    return [p.replace("**", "") for p in paragraphs]
 
 
 def _build_output(result: dict, questionnaire: dict, analysis_text: str, docs_processed: list) -> dict:

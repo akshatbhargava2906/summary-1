@@ -9,5 +9,3 @@ __pycache__/
 .gitignore
 Documents/
 test_api.py
-claimform.html
-underwriterreview.html
