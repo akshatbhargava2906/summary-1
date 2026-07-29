@@ -1,0 +1,11 @@
+applications:
+  - name: insurance-risk-analyser
+    memory: 512M
+    instances: 1
+    buildpacks:
+      - python_buildpack
+    command: gunicorn -w 2 -k uvicorn.workers.UvicornWorker api:app --bind 0.0.0.0:$PORT --timeout 120
+    env:
+      PYTHONUNBUFFERED: true
+    routes:
+      - route: insurance-risk-analyser.cfapps.eu10-004.hana.ondemand.com
